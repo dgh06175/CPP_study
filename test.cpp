@@ -291,10 +291,15 @@ using namespace std;
 //	cout << "ProgCom에 정의된 함수" << endl;
 //}
 
-int a = 10;
-int main()
+//int a = 10;
+//int main()
+//{
+//	int a = 5;
+//	cout << ++a << endl;
+//	cout << ++::a << endl;
+//}
+
+int main(void)
 {
-	int a = 5;
-	cout << ++a << endl;
-	cout << ++::a << endl;
+	cout << "hi";
 }
