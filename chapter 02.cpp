@@ -46,3 +46,95 @@ using namespace std;
 //	MyFunc(&a2, &b2); // 참조에 의한 호출(Call by reference)
 //	cout << a1 << " " << b1 << " " << a2 << " " << b2 << endl;
 //}
+
+/* 80p 문제 02-1 */
+//void MyFunc1(int& n)
+//{
+//	n++;
+//}
+//
+//void MyFunc2(int& n)
+//{
+//	n = -1 * n;
+//}
+//
+//int main(void)
+//{
+//	int num1, num2;
+//	num1 = 10;
+//	num2 = 10;
+//	MyFunc1(num1);
+//	MyFunc2(num2);
+//	cout << num1 << endl << num2;
+//}
+
+/* 문제2 */
+// 정수형 변수가 전달되어야 하는데 그냥 정수가 전달되면 참조자 선언이 실패한다.
+
+/* 문제 3 */
+//void SwapPointer(int* a, int* b)
+//{
+//	int temp;
+//	temp = *a;
+//	*a = *b;
+//	*b = temp;
+//}
+//
+//int main(void)
+//{
+//	int num1 = 5;
+//	int* ptr1 = &num1;
+//	int num2 = 10;
+//	int* ptr2 = &num2;
+//	SwapPointer(ptr1, ptr2);
+//	cout << num1 << " " << num2;
+//}
+
+//int& RefRetFuncOne(int& ref)
+//{
+//	ref++;
+//	return ref;
+//}
+//
+//int main(void)
+//{
+//	int num1 = 1;
+//	int num2 = RefRetFuncOne(num1);
+//	num1 += 1;
+//	num2 += 100;
+//	cout << "num1: " << num1 << endl;
+//	cout << "num2: " << num2 << endl;
+//}
+
+//int& RefRetFunc(int n)
+//{
+//	int num = 10;
+//	num += n;
+//	return num;
+//}
+//
+//int main(void)
+//{
+//	int& b = RefRetFunc(6);
+//	cout << b;
+//}
+
+//int Plus(int a, int b)
+//{
+//	return a + b;
+//}
+//int main(void)
+//{
+//	int a = 10;
+//	const int& b = 5;
+//	cout << Plus(a,10);
+//}
+
+/* p90 문제 2 */
+int main(void)
+{
+	const int num = 12;
+	const int* ptr = &num;
+	const int*& refptr = ptr;
+	cout << *refptr << " " << *ptr;
+}
