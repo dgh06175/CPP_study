@@ -1,4 +1,5 @@
 #include <iostream>
+#pragma	warning (disable:4996)
 using namespace std;
 
 /* 62p [문제2] */
@@ -131,10 +132,104 @@ using namespace std;
 //}
 
 /* p90 문제 2 */
-int main(void)
-{
-	const int num = 12;
-	const int* ptr = &num;
-	const int*& refptr = ptr;
-	cout << *refptr << " " << *ptr;
-}
+//int main(void)
+//{
+//	const int num = 12;
+//	const int* ptr = &num;
+//	const int*& refptr = ptr;
+//	cout << *refptr << " " << *ptr;
+//}
+
+//#include <string.h>
+//#include <stdlib.h>
+//
+//char* MakeStrAdr(int len)
+//{
+//	//char* str = (char*)malloc(sizeof(char) * len); // 힙 영역에 배열을 할당한다.
+//	char* str = new char[len];
+//	return str;
+//}
+//
+//int main(void)
+//{
+//	char* str = MakeStrAdr(20);
+//	strcpy(str, "I am so happy~");
+//	cout << str << endl;
+//	//free(str); // 힙에 할당된 메모리 공간을 소멸한다.
+//	delete []str;
+//}
+
+//int main(void)
+//{
+//	int* p = new int;
+//	int& b = *p;
+//	b = 10;
+//	cout << b << *p << a;
+//}
+
+//int main()
+//{
+//	int* ptr = new int;
+//	int& ref = *ptr;
+//	ref = 20;
+//	cout << ref << *ptr;
+//}
+
+/* 95p 문제 02-3 */
+//typedef struct __Point
+//{
+//	int xpos;
+//	int ypos;
+//}Point;
+//
+//Point& PntAdder(const Point& p1, const Point& p2)
+//{
+//	Point* sum = new Point;
+//	sum->xpos = p1.xpos + p2.xpos;
+//	sum->ypos = p1.ypos + p2.ypos;
+//	return *sum;
+//}
+//
+//int main(void)
+//{
+//	Point* ptr1 = new Point;
+//	Point* ptr2 = new Point;
+//	cout << "첫번째 점의 좌표를 입력하세요: ";
+//	cin >> ptr1->xpos >> ptr1->ypos;
+//	cout << "두번째 점의 좌표를 입력하세요: ";
+//	cin >> ptr2->xpos >> ptr2->ypos;
+//	Point& ptsum = PntAdder(*ptr1, *ptr2);
+//	cout << "x좌표의 합: " << ptsum.xpos << endl << "y좌표의 합: " << ptsum.ypos;
+//	delete ptr1;
+//	delete ptr2;
+//	delete &ptsum;
+//}
+
+/* 99p 문제 02-4-문제 1*/
+//#include <cstring>
+//
+//int main(void)
+//{
+//	char* str = new char[20];
+//	strcpy(str, "i am rich");
+//	cout << str << endl << "문자열의 길이 : " << strlen(str) << endl;
+//	char str2[20] = { 0, };
+//	strcat(str2, str);
+//	cout << "str2 : " << str2 << "\n둘이 비교한 strcmp : " << strcmp(str, str2);
+//}
+/* 문제2 */
+//#include <cstdlib>
+//#include <ctime>
+//int main(void)
+//{
+//	srand((unsigned)time(NULL));
+//	int random[5];
+//	for (int i = 0; i < 5; i++)
+//	{
+//		random[i] = rand() % 100;
+//	}
+//	for (int i = 0; i < 5; i++)
+//	{
+//		cout << random[i] << endl;
+//	}
+//}
