@@ -1,6 +1,6 @@
 #include <iostream>
-#pragma	warning (disable:4996)
 using namespace std;
+#pragma	warning (disable:4996)
 
 /* Racingcar.cpp */
 //#define ID_LEN 20
@@ -176,77 +176,170 @@ using namespace std;
 //	return 0;
 //}
 
-/* RacingCarClassBase.cpp */
-#include <cstring>
-namespace CAR_CONST
-{
-	enum
-	{
-		ID_LEN = 20, MAX_SPD = 200, FUEL_STEP = 2,
-		ACC_STEP = 10, BRK_STEP = 10
-	};
-}
+///* RacingCarClassBase.cpp */
+//#include <cstring>
+//namespace CAR_CONST
+//{
+//	enum
+//	{
+//		ID_LEN = 20, MAX_SPD = 200, FUEL_STEP = 2,
+//		ACC_STEP = 10, BRK_STEP = 10
+//	};
+//}
+//
+//class Car
+//{
+//private:
+//	char gamerID[CAR_CONST::ID_LEN];
+//	int fuelGauge;
+//	int curSpeed;
+//public:
+//	void InitMembers(char* ID, int fuel);
+//	void ShowCarState(); // 상태정보 출력
+//	void Accel();		 // 엑셀, 속도증가
+//	void Break();		 // 브레이크, 속도감소
+//};
+//
+//void Car::InitMembers(char* ID, int fuel)
+//{
+//	strcpy(gamerID, ID);
+//	fuelGauge = fuel;
+//	curSpeed = 0;
+//}
+//
+//int main(void)
+//{
+//	Car run99;
+//	run99.InitMembers( "run99", 100 );
+//	run99.Accel();
+//	run99.Accel();
+//	run99.ShowCarState();
+//	run99.Break();
+//	return 0;
+//}
+//
+//inline void Car::ShowCarState()
+//{
+//	cout << "소유자 ID: " << gamerID << endl;
+//	cout << "연료량: " << fuelGauge << "%" << endl;
+//	cout << "현재속도: " << curSpeed << "km/s" << endl;
+//}
+//
+//inline void Car::Accel()
+//{
+//	cout << gamerID << "가속" << endl;
+//	if (fuelGauge <= 0) return;
+//	else fuelGauge -= CAR_CONST::FUEL_STEP;
+//	if ((curSpeed + CAR_CONST::ACC_STEP) >= CAR_CONST::MAX_SPD)
+//	{
+//		curSpeed = CAR_CONST::MAX_SPD;
+//		return;
+//	}
+//	curSpeed += CAR_CONST::ACC_STEP;
+//}
+//
+//inline void Car::Break()
+//{
+//	cout << gamerID << "브레끼" << endl;
+//	if (curSpeed < CAR_CONST::BRK_STEP)
+//	{
+//		curSpeed = 0;
+//		return;
+//	}
+//	curSpeed -= CAR_CONST::BRK_STEP;
+//}
+//
+//inline void InitMembers(char* ID)/
 
-class Car
-{
-private:
-	char gamerID[CAR_CONST::ID_LEN];
-	int fuelGauge;
-	int curSpeed;
-public:
-	void InitMembers(char* ID, int fuel);
-	void ShowCarState(); // 상태정보 출력
-	void Accel();		 // 엑셀, 속도증가
-	void Break();		 // 브레이크, 속도감소
-};
+//int main(void)
+//{
+//	ios_base::sync_with_stdio(false);
+//	cin.tie(nullptr);
+//	cout.tie(nullptr);
+//	cout << "안녕";
+//}
 
-void Car::InitMembers(char* ID, int fuel)
-{
-	strcpy(gamerID, ID);
-	fuelGauge = fuel;
-	curSpeed = 0;
-}
+//#include <string>
+//
+//int main(void)
+//{
+//	string s;
+//	int n = 100000;
+//	for (int i = 0; i < n; i++) {
+//		s += "aa";
+//	}
+//}
 
-int main(void)
-{
-	Car run99;
-	run99.InitMembers( "run99", 100 );
-	run99.Accel();
-	run99.Accel();
-	run99.ShowCarState();
-	run99.Break();
-	return 0;
-}
+//int Digit(long long m)
+//{
+//	int i = 0;
+//	for (; m > (long long)0; i++) {
+//		m /= (long long)10;
+//	}
+//	return i;
+//}
+//int IsOnlyOne(long long m)
+//{
+//	while (1)
+//	{
+//		if (m % (long long)10 == (long long)1) {
+//			m /= (long long)10;
+//			if (m < (long long)1) return 1;
+//		}
+//		else return 0;
+//	}
+//}
+//
+//int main(void)
+//{
+//	int n;
+//	long long m;
+//	while (cin >> n) {
+//		if (n >= 1 || n <= 10000) {
+//			for (int i = 1; i < 12000000; i++) {
+//				m = (long long)n * (long long)i;
+//				if (IsOnlyOne(m)) {
+//					cout << Digit(m) << '\n';
+//					break;
+//				}
+//			}
+//		}
+//	}
+//} 
 
-inline void Car::ShowCarState()
-{
-	cout << "소유자 ID: " << gamerID << endl;
-	cout << "연료량: " << fuelGauge << "%" << endl;
-	cout << "현재속도: " << curSpeed << "km/s" << endl;
-}
+/* 백준 4375 */
+//int main(void)
+//{
+//	int n;
+//	while (cin >> n) {
+//		int num[20] = { 0, };
+//		for (int i = 1;; i++)
+//		{
+//			num[i] = (num[i - 1] * 10 + 1) % n;
+//			if (num[i] == 0)
+//			{
+//				cout << i << '\n';
+//				break;
+//			}
+//		}
+//		int num1 = 0;
+//		for (int i = 1;; i++) {
+//			num1 = (num1 * 10 + 1) % n;
+//			if (num1 == 0) {
+//				cout << i << '\n';
+//				break;
+//			}
+//		}
+//	}
+//}
 
-inline void Car::Accel()
+/* 백준 1037 */
+int main()
 {
-	cout << gamerID << "가속" << endl;
-	if (fuelGauge <= 0) return;
-	else fuelGauge -= CAR_CONST::FUEL_STEP;
-	if ((curSpeed + CAR_CONST::ACC_STEP) >= CAR_CONST::MAX_SPD)
-	{
-		curSpeed = CAR_CONST::MAX_SPD;
-		return;
+	int count, real[50] = { 0, };
+	cin >> count;
+	for (int i = 0; i < count; i++) {
+		cin >> real[i];
 	}
-	curSpeed += CAR_CONST::ACC_STEP;
+	cout << real[0] * real[count - 1];
 }
-
-inline void Car::Break()
-{
-	cout << gamerID << "브레끼" << endl;
-	if (curSpeed < CAR_CONST::BRK_STEP)
-	{
-		curSpeed = 0;
-		return;
-	}
-	curSpeed -= CAR_CONST::BRK_STEP;
-}
-
-inline void InitMembers(char* ID)
