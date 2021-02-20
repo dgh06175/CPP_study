@@ -1,2 +1,0 @@
-C:\Users\dgh06\source\repos\Cpp_Book\Debug\Cpp_Book.exe
-C:\Users\dgh06\source\repos\Cpp_Book\Debug\Cpp_Book.pdb
