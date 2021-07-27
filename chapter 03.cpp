@@ -269,3 +269,8 @@ using namespace std;
 //		s += "aa";
 //	}
 //}
+
+int main()
+{
+	cout << "hi";
+}
