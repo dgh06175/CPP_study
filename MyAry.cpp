@@ -30,14 +30,14 @@ MyArray& MyArray::operator = (const MyArray& br)// 대입연산자
 
 bool MyArray::put(int index, int val) // val의 값을 index방에 저장. 성공시true, 실패시 false 반환(크기를 벗어날때)
 {
-	if (index >= size) { return false; }
+	if (index >= size || index < 0) { return false; }
 	ary[index] = val;
 	return true;
 }
 
 bool MyArray::get(int index, int& getdata) // 배열요소 중 index방의 값을 getdata에 저장. 성공시true, 실패시 false 반환(크기를 벗어날때)
 {
-	if (index >= size) { return false; }
+	if (index >= size || index < 0) { return false; }
 	getdata = ary[index];
 	return true;
 }
@@ -49,5 +49,9 @@ int MyArray::getSize() // 배열요소의 개수 확인
 
 int* MyArray::getAry(void) // 배열요소의 내용 확인
 {
-	return ary;
+	int* tempAry = new int[size];
+	for (int i = 0; i < size; i++) {
+		tempAry[i] = ary[i];
+	}
+	return tempAry;
 }
