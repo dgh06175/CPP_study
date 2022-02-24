@@ -1,57 +1,33 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
-#include "cat.h"
-#include "dog.h"
-#include "duck.h"
-#include "goldFish.h"
+#include "MyArray.h"
 
-int main()  // class Adapter pattern 
+int main()
 {
-	Cat cat("야옹이", Pet::MAMMAL, 2);
-	Dog dog("멍멍이", Pet::MAMMAL, 5);
-	Duck duck("도널드", Pet::BIRDS, 1);
-	GoldFish goldFish("니모", Pet::FISH, 2);
+	cout.setf(ios::fixed, ios::floatfield);
+	cout.precision(2);
+	MyArray<double> height(3);
 
-	/*cout << "\n** Cat객체 테스트 **" << endl;
-	cat.eat();
-	cat.creep();
-	cat.view();
-
-	cout << "\n** Dog객체 테스트 **" << endl;
-	dog.eat();
-	dog.creep();
-	dog.view();
-
-	cout << "\n** Duck객체 테스트 **" << endl;
-	duck.eat();
-	duck.creep();
-	duck.swim();
-	duck.view();
-
-	cout << "\n** GoldFish객체 테스트 **" << endl;
-	goldFish.eat();
-	goldFish.swim();
-	goldFish.view();*/
-
-
-	Pet *petAry[4] = { 
-		new Cat("야옹이", Pet::MAMMAL, 2),
-		new Dog("멍멍이", Pet::MAMMAL, 5),
-		new Duck("도널드", Pet::BIRDS, 1),
-		new GoldFish("니모", Pet::FISH, 2)
-	};
-	for (int i = 0; i < sizeof(petAry) / sizeof(petAry[0]); i++) {
-		petAry[i]->eat();
-		if (dynamic_cast<Cat*>(petAry[i]) != NULL) { dynamic_cast<Cat*>(petAry[i])->creep(); }
-		if (dynamic_cast<Dog*>(petAry[i]) != NULL) { dynamic_cast<Dog*>(petAry[i])->creep(); }
-		if (dynamic_cast<Duck*>(petAry[i]) != NULL) { dynamic_cast<Duck*>(petAry[i])->creep(); }
-		if (dynamic_cast<Duck*>(petAry[i]) != NULL) { dynamic_cast<Duck*>(petAry[i])->swim(); }
-		if (dynamic_cast<GoldFish*>(petAry[i]) != NULL) { dynamic_cast<GoldFish*>(petAry[i])->swim(); }
-		petAry[i]->view();
-		cout << '\n';
+	int i;
+	bool res;
+	double dnum;
+	double tot = 0;
+	double temp;
+	cout << "세 학생의 키 입력 : ";
+	for (i = 0; i < 3; i++) {
+		cin >> temp;
+		height.put(i, temp);
 	}
-	for (int i = 0; i < sizeof(petAry) / sizeof(petAry[0]); i++) {
-		delete petAry[i];
+	for (i = 0; i < 3; i++) {
+		res = height.get(i, dnum);
+		if (res)
+		{
+			tot += dnum;
+		}
+		else {
+			cout << "배열 읽기 실패" << endl;
+		}
 	}
+	cout << "평균키 : " << tot / 3.0 << endl;
 	return 0;
 }
