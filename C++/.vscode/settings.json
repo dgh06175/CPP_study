@@ -1,0 +1,9 @@
+{
+  "files.associations": {
+    "iostream": "cpp",
+    "array": "c",
+    "vector": "c",
+    "ios": "c",
+    "__node_handle": "c"
+  }
+}
