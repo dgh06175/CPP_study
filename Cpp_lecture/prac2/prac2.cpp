@@ -1,15 +1,18 @@
 #include <iostream>
 using namespace std;
 
+void EX_1();
 void EX_2();
 void EX_3();
 void EX_4();
 void EX_5();
 void EX_6();
 double biggest(double[], int);
+int sum(int, int);
 
 int main()
 {
+    EX_1();
     EX_2();
     EX_3();
     cin.ignore();
@@ -17,6 +20,31 @@ int main()
     EX_5();
     cin.ignore();
     EX_6();
+}
+
+void EX_1()
+{
+    cout << "--------------EX1--------------" << endl;
+    int n = 0;
+    cout << "끝수를 입력하세요 >> ";
+    cin >> n;
+    if (n <= 0)
+    {
+        cout << "양수를 입력하세요 !\n";
+        EX_1();
+        return;
+    }
+    cout << "1에서 " << n << " 까지의 합은 " << sum(1, n) << " 입니다 \n\n";
+}
+
+int sum(int a, int b)
+{
+    int res = 0;
+    for (int k = a; k <= b; k++)
+    {
+        res += k;
+    }
+    return res;
 }
 
 void EX_2()
@@ -84,9 +112,9 @@ void EX_5()
 {
     cout << "--------------EX5--------------" << endl;
     char password1[100], password2[100];
-    cout << "새 암호를 입력하세요 >>";
+    cout << "새 암호를 입력하세요 >> ";
     cin >> password1;
-    cout << "새 암호를 다시 한번 입력하세요 >>";
+    cout << "새 암호를 다시 한번 입력하세요 >> ";
     cin >> password2;
     if (!strcmp(password1, password2))
     {
@@ -113,6 +141,5 @@ void EX_6()
     cout << "나이는? ";
     cin >> age;
     cout << "-------------------------------" << endl;
-    cout << name << ". " << address << ". " << age << "세" << endl
-         << endl;
+    cout << name << ". " << address << ". " << age << "세\n\n";
 }
