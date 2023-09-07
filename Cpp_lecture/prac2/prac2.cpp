@@ -15,10 +15,8 @@ int main()
     EX_1();
     EX_2();
     EX_3();
-    cin.ignore();
     EX_4();
     EX_5();
-    cin.ignore();
     EX_6();
 }
 
@@ -98,6 +96,7 @@ void EX_4()
     char c[100];
     int count = 0;
     cout << "문자들을 입력하시오(100개 미만)" << endl;
+    cin.ignore();
     cin.getline(c, sizeof(c) / sizeof(*c));
     for (int i = 0; i < 100; i++)
     {
@@ -135,8 +134,10 @@ void EX_6()
     int age;
 
     cout << "이름은? ";
+    cin.ignore();
     cin.getline(name, sizeof(name) / sizeof(*name));
     cout << "주소는? ";
+    cin.ignore();
     cin.getline(address, sizeof(address) / sizeof(*address));
     cout << "나이는? ";
     cin >> age;
