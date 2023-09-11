@@ -10,16 +10,6 @@ void EX_6();
 double biggest(double[], int);
 int sum(int, int);
 
-int main()
-{
-    EX_1();
-    EX_2();
-    EX_3();
-    EX_4();
-    EX_5();
-    EX_6();
-}
-
 void EX_1()
 {
     cout << "--------------EX1--------------" << endl;
@@ -143,4 +133,92 @@ void EX_6()
     cin >> age;
     cout << "-------------------------------" << endl;
     cout << name << ". " << address << ". " << age << "세\n\n";
+}
+
+void EX01911_1()
+{
+    int n = 10, m;
+    char c = 'A';
+    double d;
+
+    int *p;
+    p = &n;
+    *p = 25;
+    cout << n << endl;
+}
+
+void pointerTest0()
+{
+    cout << "포인터 값을 테스트 합니다.\n";
+    float M[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    cout << M << endl;
+    cout << &M << endl;
+    cout << &M[0] << endl;
+    cout << *M << endl;
+    cout << M + 1 << endl;
+    cout << *(M + 1) << endl;
+    cout << M[1] << endl;
+    cout << *(M + 2) + 3 << endl;
+}
+
+void pointerTest1()
+{
+    cout << "포인터 테스트 1" << endl;
+    int arr[6] = {1, 2, 3, 4, 5, 6};
+    int *chr_ptr; // 1) int에 대한 포인터 변수 chr_ptr을 선언하는 문장 작성
+    // chr_ptr이 arr 배열이 저장되어 있는 메모리 주소값을 갖도록 초기화.
+    chr_ptr = &(arr[0]);
+    chr_ptr++;                // chr_ptr의 값을 하나 증가
+    cout << chr_ptr << "\n";  // 3) 옆 문장이 실행되었을 때의 결과는? [1]의 주소
+    cout << *chr_ptr << "\n"; // 4) 옆 문장이 실행되었을 때의 결과는? 2
+    cout << arr << "\n";      // 5) 옆 문장이 실행되었을 때의 결과는? arr의 주소
+    cout << arr + 4 << "\n";  // 6) 옆 문장이 실행되었을 때의 결과는? arr[4]의 주소
+    cout << &arr[3] << "\n";  // 7) 옆 문장이 실행되었을 때의 결과는? arr[3]의 주소
+    cout << arr[4] << "\n";
+
+    // arr[3]의 값을 chr_ptr을 이용하여 프린트
+    cout << *chr_ptr + 2 << endl;
+}
+
+void pointerTest2()
+{
+    cout << "포인터 테스트 2" << endl;
+    int a = 10, b = 20, c = 30, d = 40, e = 50;
+    int *ptr[5];
+    ptr[0] = &a;
+    ptr[1] = &b;
+    ptr[2] = &c;
+    ptr[3] = &d;
+    ptr[4] = &d;
+
+    for (int i = 0; i < sizeof(ptr) / sizeof(ptr[0]); i++)
+    {
+        cout << *ptr[i] << endl;
+    }
+}
+
+void pointerTest3()
+{
+    cout << "포인터 테스트 3" << endl;
+    int arr_0_[3] = {1, 2, 3};
+    int arr_1_[4] = {11, 12, 13, 14};
+    int arr_2_[5] = {21, 22, 23, 24, 25};
+    int *ptr[3] = {arr_0_, arr_1_, arr_2_};
+    cout << *(ptr[0] + 1) << " " << ptr[0][1] << endl; // 2 2
+    cout << *(ptr[1] + 2) << " " << ptr[1][2] << endl; // 13 13
+}
+
+int main()
+{
+    // EX_1();
+    // EX_2();
+    // EX_3();
+    // EX_4();
+    // EX_5();
+    // EX_6();
+    // EX01911_1();
+    // pointerTest0();
+    // pointerTest1();
+    // pointerTest2();
+    pointerTest3();
 }
