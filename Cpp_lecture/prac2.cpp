@@ -208,6 +208,119 @@ void pointerTest3()
     cout << *(ptr[1] + 2) << " " << ptr[1][2] << endl; // 13 13
 }
 
+void FuncArray(int *ptr)
+{
+    cout << "FUNC " << ptr << endl;
+    cout << "FUNC " << *ptr << endl;
+    cout << "FUNC " << ptr[0] << endl;
+
+    for (int i = 0; i < 5; i++)
+    {
+        *(ptr + i) = *(ptr + i) + 5;
+    }
+}
+
+void pointerTest4()
+{
+    int c[5] = {10, 20, 30, 40, 50};
+    cout << c << endl;
+    cout << *c << endl;
+    cout << c + 1 << endl;
+    cout << *(c + 1) << endl;
+    FuncArray(c);
+
+    for (int i = 0; i < 5; i++)
+    {
+        cout << c[i] << endl;
+    }
+}
+
+void swap(int &aa, int &bb)
+{
+    int tmp = aa;
+    aa = bb;
+    bb = tmp;
+}
+
+void Adder(int a, int b, int &c)
+{
+    c = a + b;
+    cout << "PTR_reference FUNCTION" << endl;
+}
+
+void Adder(int a, int b, int *c)
+{
+    *c = a + b;
+    cout << "PTR_pointer FUNCTION" << endl;
+}
+
+void AddSub(int a, int b, int &sum, int &diff)
+{
+    sum = a + b;
+    diff = a - b;
+    cout << "AddSub FUNCTION" << endl;
+}
+
+void referenceTest1()
+{
+    int target = 20;
+    int &nickname = target;
+
+    int a = 10, b = 20;
+    swap(a, b);
+    cout << a << b << endl;
+
+    int c = 0;
+    Adder(a, b, c);
+    cout << "c: " << c << endl;
+
+    c = 0;
+    Adder(a, b, &c);
+    cout << "c: " << c << endl;
+
+    c = 0;
+    int d = 0;
+    AddSub(a, b, c, d);
+    cout << "sum: " << c << "  diff: " << d << endl;
+}
+
+void EX0915_2_1()
+{
+    int M[3][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+    int(*ptr)[3];
+    int *p;
+    int **pt;
+    ptr = M;
+    cout << "ptr은 포인터 변수가 3개 들어갈수있는 배열이다 : " << ptr << "\nM은 이차원 배열 M의 첫 주소이다 : " << M << endl;
+    cout << "ptr + 1은 ptr 포인터 변수의 두번쨰 배열의 주소이다 : " << ptr + 1 << "\n"
+         << "M + 1은 M 이차원 배열의 두번쨰 배열의 주소이다 : " << M + 1 << endl;
+    cout << "*(ptr + 1): " << *(ptr + 1) << "\nptr[1]: " << ptr[1] << "\n*(M + 1): " << *(M + 1) << "\nM[1]: " << M[1] << endl;
+    cout << "\n**(ptr + 1): "
+         << **(ptr + 1) << "\n"
+         << "\n**(M + 1): "
+         << **(M + 1) << "\n*M[1]: "
+         << *M[1] << "\nM[1][0]: "
+         << M[1][0] << endl;
+    p = M[0];
+    cout << "p: " << p << "\nM[0]: " << M[0] << "\n*M: " << *M << endl;
+    cout << "p + 1: " << p + 1 << "\nM[0] + 1: " << M[0] + 1 << "\n*M + 1: " << *M + 1 << endl;
+    cout << "*(p + 1): " << *(p + 1) << "\n(M[0] + 1): " << *(M[0] + 1) << "\n*(M + 1): " << *(*M + 1) << endl;
+    pt = &p; // pt = M; (X)
+    cout << "*pt: " << *pt << "\np: " << p << endl;
+    cout << "**pt: " << **pt << "\n*p: " << *p << endl;
+}
+
+bool average(int a[], int size, float &avg)
+{
+    int sum = 0;
+    for (int i = 0; i < size; i++)
+    {
+        sum += a[i];
+    }
+    avg = (float)sum / size;
+    return true;
+}
+
 int main()
 {
     // EX_1();
@@ -220,5 +333,15 @@ int main()
     // pointerTest0();
     // pointerTest1();
     // pointerTest2();
-    pointerTest3();
+    // pointerTest3();
+    // pointerTest4();
+    // referenceTest1();
+    EX0915_2_1();
+
+    int x[] = {0, 1, 2, 3, 4, 5};
+    float avg;
+    if (average(x, 6, avg))
+        cout << "평균은 " << avg << endl;
+    else
+        cout << "매개 변수 오류" << endl;
 }
