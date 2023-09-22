@@ -321,6 +321,121 @@ bool average(int a[], int size, float &avg)
     return true;
 }
 
+void functest()
+{
+    int x[] = {0, 1, 2, 3, 4, 5};
+    float avg;
+    if (average(x, 6, avg))
+        cout << "평균은 " << avg << endl;
+    else
+        cout << "매개 변수 오류" << endl;
+}
+
+void stringTest()
+{
+    string name;
+    string address("서울시 성북구 삼성동 389");
+    string copyAddres(address);
+
+    char text[] = {'L', 'O', 'V', 'E', ' ', 'C', '+', '\0'};
+    string title(text);
+
+    cin >> name;
+    cout << name << endl;
+    cout << address << endl;
+    cout << copyAddres << endl;
+    cout << text << endl;
+    cout << title.size() << endl;
+    cout << (title == "LOVE CD+") << endl;
+}
+
+void vectorTest()
+{
+    vector<int> A = {3, 2};
+    A.push_back(42);
+    A.push_back(2);
+    A.push_back(9);
+    A.pop_back();
+    for (int i = 0; i < A.size(); i++)
+    {
+        cout << A.at(i) << " ";
+    }
+    cout << endl;
+    cout << A.size() << endl;
+}
+
+class Circle
+{
+private:
+    int radius;
+
+public:
+    double getArea()
+    {
+        return (3.14 * radius * radius);
+    }
+    void setRadius(int r)
+    {
+        radius = r;
+    }
+};
+
+void classTest()
+{
+    Circle donut;
+    donut.setRadius(8);
+    double area = donut.getArea();
+    cout << "donut 면적은 " << area << endl;
+
+    Circle pizza;
+    pizza.setRadius(30);
+    area = pizza.getArea();
+    cout << "pizza 면적은 " << area << endl;
+
+    Circle *ptr;
+    ptr = &pizza;
+
+    cout << ptr->getArea() << endl;
+}
+
+void stringTest2()
+{
+    string names[5];
+
+    for (int i = 0; i < 5; i++)
+    {
+        getline(cin, names[i]);
+    }
+
+    string lastString = names[0];
+    for (int i = 1; i < 5; i++)
+    {
+        if (names[i] > lastString)
+        {
+            lastString = names[i];
+        }
+    }
+    cout << lastString << endl;
+}
+
+class Rectangle
+{
+    double width;
+    double height;
+
+public:
+    void setSize(double width, double height)
+    {
+        this->width = width;
+        this->height = height;
+    }
+
+    double getArea()
+    {
+        return width * height;
+    }
+};
+
 int main()
 {
     // EX_1();
@@ -336,12 +451,14 @@ int main()
     // pointerTest3();
     // pointerTest4();
     // referenceTest1();
-    EX0915_2_1();
+    // EX0915_2_1();
+    // functest();
+    // stringTest();
+    // vectorTest();
+    // classTest();
+    // stringTest2();
 
-    int x[] = {0, 1, 2, 3, 4, 5};
-    float avg;
-    if (average(x, 6, avg))
-        cout << "평균은 " << avg << endl;
-    else
-        cout << "매개 변수 오류" << endl;
+    Rectangle rect;
+    rect.setSize(3, 5);
+    cout << "사각형의 면적은 " << rect.getArea() << endl;
 }
