@@ -436,6 +436,161 @@ public:
     }
 };
 
+void classTest1()
+{
+    Rectangle rect;
+    rect.setSize(3, 5);
+    cout << "사각형의 면적은 " << rect.getArea() << endl;
+}
+
+class Circle0925
+{
+public:
+    int radius;
+    int *MEM;
+    Circle0925();      // 생성자
+    Circle0925(int r); // 생성자
+    ~Circle0925();
+
+    double getArea();
+};
+Circle0925::~Circle0925()
+{
+    delete[] MEM;
+    cout << "반지름" << radius << "인 원 소멸" << endl;
+}
+Circle0925::Circle0925()
+{
+    MEM = new int[10000 * 10000];
+    radius = 1;
+    cout << "반지름" << radius << " 원 생성" << endl;
+}
+Circle0925::Circle0925(int r)
+{
+    MEM = new int[1410065408];
+    radius = r;
+    cout << "반지름" << radius << " 원 생성" << endl;
+}
+double Circle0925::getArea()
+{
+    return (3.14 * radius * radius);
+}
+// Circle0925 A(1000);
+// Circle0925 B(2000);
+int FFF()
+{
+    Circle0925 A(100);
+    Circle0925 B(200);
+    int a;
+    cin >> a;
+    return 0;
+}
+
+void classTest2()
+{
+    Circle0925 A, B(100), C(211);
+    cout << C.getArea() << endl;
+    FFF();
+}
+
+class Oval
+{
+    int width, height;
+
+public:
+    Oval(int width = 1, int height = 1);
+    ~Oval();
+    int getWidth();
+    int getHeight();
+    void set(int width, int height);
+    void show();
+};
+
+Oval::Oval(int width, int height)
+{
+    this->width = width;
+    this->height = height;
+}
+
+Oval::~Oval()
+{
+    cout << "Oval 소멸: "
+         << "width: " << width << ", height: " << height << endl;
+}
+
+int Oval::getHeight()
+{
+    return height;
+}
+
+int Oval::getWidth()
+{
+    return width;
+}
+
+void Oval::set(int width, int height)
+{
+    this->width = width;
+    this->height = height;
+}
+
+void Oval::show()
+{
+    cout << "width: " << width << ", height: " << height << endl;
+}
+
+void EX0925_2()
+{
+    Oval a, b(3, 4);
+    a.set(10, 20);
+    a.show();
+    cout << b.getWidth() << ", " << b.getHeight() << endl;
+}
+
+class Rectangle0925
+{
+    double width;
+    double height;
+
+public:
+    Rectangle0925(int size = 1);
+    Rectangle0925(int width, int height);
+    ~Rectangle0925();
+    bool isSquare();
+};
+
+Rectangle0925::Rectangle0925(int size)
+{
+    width = size;
+    height = size;
+}
+Rectangle0925::Rectangle0925(int width, int height)
+{
+    this->width = width;
+    this->height = height;
+}
+bool Rectangle0925::isSquare()
+{
+    return width == height;
+}
+Rectangle0925::~Rectangle0925()
+{
+    cout << "width: " << width << ", height: " << height << "인 사각형 소멸" << endl;
+}
+
+void EX0925_1()
+{
+    Rectangle0925 rect1;
+    Rectangle0925 rect2(3, 5);
+    Rectangle0925 rect3(3);
+    if (rect1.isSquare())
+        cout << "rect1은 정사각형이다." << endl;
+    if (rect2.isSquare())
+        cout << "rect2는 정사각형이다." << endl;
+    if (rect3.isSquare())
+        cout << "rect3는 정사각형이다." << endl;
+}
+
 int main()
 {
     // EX_1();
@@ -457,8 +612,8 @@ int main()
     // vectorTest();
     // classTest();
     // stringTest2();
-
-    Rectangle rect;
-    rect.setSize(3, 5);
-    cout << "사각형의 면적은 " << rect.getArea() << endl;
+    // classTest1();
+    // classTest2();
+    EX0925_1();
+    // EX0925_2();
 }
