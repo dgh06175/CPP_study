@@ -1,3 +1,6 @@
+#ifndef CAL_H
+#define CAL_H
+
 class Adder
 { // 덧셈 모듈 클래스
     int op1, op2;
@@ -12,3 +15,5 @@ class Calculator
 public:
     void run();
 };
+
+#endif

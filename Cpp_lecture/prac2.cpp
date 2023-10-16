@@ -591,6 +591,88 @@ void EX0925_1()
         cout << "rect3는 정사각형이다." << endl;
 }
 
+class Math
+{
+public:
+    static int sh_abs(int a)
+    {
+        return a > 0 ? a : -a;
+    }
+    static int sh_max(int a, int b)
+    {
+        return (a > b) ? a : b;
+    }
+
+    static int sh_min(int a, int b)
+    {
+        return (a > b) ? b : a;
+    }
+};
+
+void EX1016()
+{
+    cout << Math::sh_abs(-5) << endl;
+    cout << Math::sh_max(10, 8) << endl;
+    cout << Math::sh_min(-3, -8) << endl;
+}
+
+class PERSON
+{
+public:
+    int money;
+    static int sharedMoney;
+
+    string name;
+
+    PERSON()
+    {
+        money = 0;
+    }
+
+    PERSON(string name_in)
+    {
+        money = 0;
+        this->name = name_in;
+    }
+
+    ~PERSON()
+    {
+        cout << "name: " << name << ", money: " << money << endl; // 쉼표를 추가하여 출력을 명확하게 합니다.
+    }
+
+    void addMoney(int money_in)
+    {
+        money += money_in;
+    }
+
+    static void addShared(int money_in) // 정적 메서드로 선언
+    {
+        sharedMoney += money_in;
+    }
+};
+
+int PERSON::sharedMoney = 0;
+
+int EX1016_2()
+{
+    PERSON C = PERSON("JO");
+    PERSON A("KANG"), B("KIM");
+    // 3월
+    A.addMoney(100);
+    A.addShared(5);
+    B.addMoney(200);
+    B.addShared(5);
+    // 4월
+    A.addMoney(100);
+    A.addShared(5);
+    B.addMoney(200);
+    B.addShared(5);
+    cout << "공금 = " << PERSON::sharedMoney << endl;
+    PERSON::addShared(100); // 이제 정상적으로 작동합니다.
+    cout << "공금 = " << PERSON::sharedMoney << endl;
+    return 0;
+}
+
 int main()
 {
     // EX_1();
@@ -614,6 +696,8 @@ int main()
     // stringTest2();
     // classTest1();
     // classTest2();
-    EX0925_1();
+    // EX0925_1();
     // EX0925_2();
+    // EX1016();
+    EX1016_2();
 }
