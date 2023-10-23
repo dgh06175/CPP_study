@@ -752,6 +752,101 @@ void EX1020_2()
     }
 }
 
+class allocTEST
+{
+public:
+    int size;
+    int *data;
+
+public:
+    allocTEST() { this->data = NULL; }
+    allocTEST(int size_in)
+    {
+        data = new int[size_in];
+        size = size_in;
+    };
+    ~allocTEST() { delete[] data; };
+};
+
+void EX1023_1()
+{
+    allocTEST E(100);
+    for (int i = 0; i < E.size; i++)
+    {
+        cout << E.data[i] << " ";
+    }
+}
+
+class Member
+{
+    string name;
+
+public:
+    Member() { name = ""; }
+    Member(string name_in) { this->name = name_in; }
+    string getName() { return name; }
+    void setName(string name_in) { this->name = name_in; }
+};
+
+class Family
+{
+    string family_name;
+    Member *p;
+    int size;
+
+public:
+    Family(string name_in, int size_in);
+    void setName(int index_in, string name_in);
+    void show();
+    ~Family();
+};
+
+Family::Family(string name_in, int size_in)
+{
+    this->family_name = name_in;
+    this->size = size_in;
+    p = new Member[size];
+    if (p == NULL)
+    {
+        cout << "메모리 할당 실패";
+    }
+}
+
+void Family::setName(int index_in, string name_in)
+{
+    p[index_in].setName(name_in);
+}
+
+void Family::show()
+{
+    cout << family_name << "가족은 다음과 같이 " << size << "명입니다." << endl;
+    for (int i = 0; i < size; i++)
+    {
+        cout << p[i].getName() << "  ";
+    }
+    cout << endl
+         << endl;
+}
+
+Family::~Family(){};
+
+void EX1023_2()
+{
+    Family simpson("Simpson", 3); // 3명으로 구성된 Simpson 가족
+    simpson.setName(0, "Mr. Simpson");
+    simpson.setName(1, "Mrs. Simpson");
+    simpson.setName(2, "Bart Simpson");
+    simpson.show();
+
+    Family *kang = new Family("kang", 4); // 3명으로 구성된 Simpson 가족
+    kang->setName(0, "Mr. kang");
+    kang->setName(1, "Mrs. kang");
+    kang->setName(2, "Bart kang");
+    kang->setName(3, "kang's Dau");
+    kang->show();
+    delete kang;
+}
+
 int main()
 {
     // EX_1();
@@ -780,5 +875,7 @@ int main()
     // EX1016();
     // EX1016_2();
     // EX1020_1();
-    EX1020_2();
+    // EX1020_2();
+    // EX1023_1();
+    EX1023_2();
 }
