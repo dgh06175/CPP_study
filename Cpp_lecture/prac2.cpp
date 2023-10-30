@@ -847,6 +847,153 @@ void EX1023_2()
     delete kang;
 }
 
+class _Circle_
+{
+private:
+    int radius;
+
+public:
+    _Circle_() { radius = 1; }
+    _Circle_(int radius) { this->radius = radius; }
+    void setRadius(int radius) { this->radius = radius; }
+    double getArea() { return 3.14 * radius * radius; }
+};
+
+void swapCircle(_Circle_ &A, _Circle_ *B)
+{
+    _Circle_ tmp;
+    tmp = A;
+    A = *B;
+    *B = tmp;
+}
+
+void EX1030_1()
+{
+    _Circle_ A(2);
+    _Circle_ B(3);
+
+    cout << "A의 면적 = " << A.getArea() << " B의 면적 = " << B.getArea() << endl;
+
+    swapCircle(A, &B);
+
+    cout << "A의 면적 = " << A.getArea() << " B의 면적 = " << B.getArea() << endl;
+}
+
+void readRadius(_Circle_ &circle)
+{
+    int radius;
+    cout << "정수 값으로 반지름을 입력하세요>>";
+    cin >> radius;
+    circle.setRadius(radius);
+}
+
+void EX1030_2()
+{
+    _Circle_ donut;
+    readRadius(donut);
+    cout << "donut의 면적 = " << donut.getArea() << endl;
+}
+
+class Accumulator
+{
+    int value;
+
+public:
+    Accumulator(int value);  // 매개변수 value로 멤버 value를 초기화한다.
+    Accumulator &add(int n); // value에 n을 더해 값을 누적한다.
+    int get();               // 누적된 값 value를 리턴한다.
+};
+
+Accumulator::Accumulator(int value)
+{
+    this->value = value;
+}
+
+Accumulator &Accumulator::add(int n)
+{
+    this->value += n;
+    return *this;
+}
+
+int Accumulator::get()
+{
+    return this->value;
+}
+
+void EX1030_3()
+{
+    Accumulator acc(10);
+    acc.add(5).add(6).add(7);  // acc의 value 멤버가 28이 된다.
+    cout << acc.get() << endl; // 28 출력
+}
+
+class Book
+{
+    char *title; // 제목 문자열
+    int price;   // 가격
+public:
+    Book(char *title, int price)
+    {
+        this->title = title;
+        this->price = price;
+    }
+    ~Book()
+    {
+        cout << title << "소멸" << endl;
+    };
+    void set(char *title, int price)
+    {
+        this->title = title;
+        this->price = price;
+    }
+    void show() { cout << title << ' ' << price << "원" << endl; }
+};
+
+void EX1030_4()
+{
+    Book cpp((char *)"명품C++", 10000);
+    Book java = cpp;
+    java.set((char *)"명품자바", 12000);
+    cpp.show();
+    java.show();
+}
+
+class _Student_
+{
+    char *name;
+
+public:
+    _Student_() { name = NULL; }
+    _Student_(char *name)
+    {
+        int length = strlen(name);
+        this->name = new char[length + 1];
+        strcpy(this->name, name);
+    }
+    ~_Student_()
+    {
+        // delete[] name;
+    }
+    void showName()
+    {
+        cout << "이름이: " << name << endl;
+    }
+    void setName(char *name)
+    {
+        this->name = name;
+    }
+};
+
+void EX1030_5()
+{
+    _Student_ A((char *)"SANG"), B;
+    B = A;
+    B.showName();
+    B.setName((char *)"LEE");
+    B.showName();
+    A.showName();
+}
+
 int main()
 {
     // EX_1();
@@ -877,5 +1024,10 @@ int main()
     // EX1020_1();
     // EX1020_2();
     // EX1023_1();
-    EX1023_2();
+    // EX1023_2();
+    // EX1030_1();
+    // EX1030_2();
+    // EX1030_3();
+    // EX1030_4();
+    EX1030_5();
 }
