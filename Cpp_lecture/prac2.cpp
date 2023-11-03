@@ -970,6 +970,13 @@ public:
         this->name = new char[length + 1];
         strcpy(this->name, name);
     }
+    _Student_(_Student_ &inputObj)
+    {
+        int length = strlen(inputObj.name);
+        this->name = new char[length + 1];
+        strcpy(this->name, inputObj.name);
+    }
+
     ~_Student_()
     {
         // delete[] name;
@@ -980,7 +987,10 @@ public:
     }
     void setName(char *name)
     {
-        this->name = name;
+        int length = strlen(name);
+        delete[] this->name;
+        this->name = new char[length + 1];
+        strcpy(this->name, name);
     }
 };
 
@@ -992,6 +1002,112 @@ void EX1030_5()
     B.setName((char *)"LEE");
     B.showName();
     A.showName();
+}
+
+class Person
+{ // Person 클래스 선언
+    char *name;
+    int id;
+
+public:
+    Person(int id, char *name); // 생성자
+    ~Person();                  // 소멸자
+    void changeName(char *name);
+    void show() { cout << id << ',' << name << endl; }
+};
+
+Person::Person(int id, char *name)
+{ // 생성자
+    this->id = id;
+    int len = strlen(name);         // name의 문자 개수
+    this->name = new char[len + 1]; // name 문자열 공간 핟당
+    strcpy(this->name, name);       // name에 문자열 복사
+}
+
+Person::~Person()
+{                      // 소멸자
+    if (name)          // 만일 name에 동적 할당된 배열이 있으면
+        delete[] name; // 동적 할당 메모리 소멸
+}
+
+void Person::changeName(char *name)
+{ // 이름 변경
+    if (strlen(name) > strlen(this->name))
+        return;
+    strcpy(this->name, name);
+}
+
+void EX1103_1()
+{
+    Person father(1, "Kitae"); // (1) father 객체 생성
+    Person daughter(father);   // (2) daughter 객체 복사 생성. 복사생성자호출
+    cout << "daughter 객체 생성 직후 ----" << endl;
+    father.show();                // (3) father 객체 출력
+    daughter.show();              // (3) daughter 객체 출력
+    daughter.changeName("Grace"); // (4) daughter의 이름을 "Grace"로 변경
+    cout << "daughter 이름을 Grace로 변경한 후 ----" << endl;
+    father.show();   // (5) father 객체 출력
+    daughter.show(); // (5) daughter 객체 출력
+                     // (6), (7) daughter, father 객체 소멸
+}
+
+class _Book_
+{
+    char *title;
+    int price;
+
+public:
+    _Book_()
+    {
+        title = NULL;
+        price = 0;
+    }
+    _Book_(char *title, int price)
+    {
+        int length = strlen(title);
+        this->title = new char[length + 1];
+        strcpy(this->title, title);
+        this->price = price;
+    }
+    _Book_(_Book_ &inputObj)
+    {
+        int length = strlen(inputObj.title);
+        this->title = new char[length + 1];
+        strcpy(this->title, inputObj.title);
+        this->price = inputObj.price;
+    }
+
+    ~_Book_()
+    {
+        delete[] title;
+    }
+    void showData()
+    {
+        cout << "이름: " << title;
+        cout << " 가격: " << price << endl;
+    }
+    void settitle(char *title)
+    {
+        int length = strlen(title);
+        delete[] this->title;
+        this->title = new char[length + 1];
+        strcpy(this->title, title);
+    }
+    void setprice(int price)
+    {
+        this->price = price;
+    }
+};
+
+void EX1103_2()
+{
+    _Book_ A((char *)"A", 1000), B;
+    B = A;
+    B.showData();
+    B.settitle((char *)"B");
+    B.setprice(2000);
+    B.showData();
+    A.showData();
 }
 
 int main()
@@ -1029,5 +1145,7 @@ int main()
     // EX1030_2();
     // EX1030_3();
     // EX1030_4();
-    EX1030_5();
+    // EX1030_5();
+    // EX1103_1();
+    EX1103_2();
 }
