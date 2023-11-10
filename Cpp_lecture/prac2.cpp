@@ -1110,6 +1110,113 @@ void EX1103_2()
     A.showData();
 }
 
+class Complex
+{
+    float re, im;
+
+public:
+    Complex() { re = im = 0; }
+    Complex(float im, float re)
+    {
+        this->re = re;
+        this->im = im;
+    }
+    Complex operator+(Complex in)
+    {
+        Complex tmp;
+        tmp.re = this->re + in.re;
+        tmp.im = this->im + in.im;
+        return tmp;
+    }
+    Complex operator-(Complex in)
+    {
+        Complex tmp;
+        tmp.re = this->re - in.re;
+        tmp.im = this->im - in.im;
+        return tmp;
+    }
+    Complex operator*(Complex in)
+    {
+        Complex tmp;
+        float a = this->re;
+        float b = this->im;
+        float c = in.re;
+        float d = in.im;
+        tmp.re = a * c - b * d;
+        tmp.im = b * c + a * d;
+        return tmp;
+    }
+    Complex operator/(Complex in)
+    {
+        Complex tmp;
+        float a = this->re;
+        float b = this->im;
+        float c = in.re;
+        float d = in.im;
+        tmp.re = (a * c + b * d) / (c * c + d * d);
+        tmp.im = (b * c - a * d) / (c * c + d * d);
+        return tmp;
+    }
+    void show()
+    {
+        cout.precision(5);
+        if (im >= 0)
+            cout << re << " + j" << im << endl;
+        else
+            cout << re << " - j" << -im << endl;
+    }
+};
+
+class Cpx
+{
+public:
+    float re, im;
+
+    Cpx() { re = im = 0; }
+    Cpx(float im, float re)
+    {
+        this->re = re;
+        this->im = im;
+    }
+    friend Complex operator+(const Complex &A, const Cpx &B);
+    void show()
+    {
+        cout.precision(5);
+        if (im >= 0)
+            cout << re << " + j" << im << endl;
+        else
+            cout << re << " - j" << -im << endl;
+    }
+};
+
+Cpx operator+(Cpx A, Cpx B)
+{
+    Cpx tmp;
+    tmp.re = A.re + B.re;
+    tmp.im = A.im + B.im;
+    return tmp;
+}
+
+void EX1110_1()
+{
+    Complex X(2, 3), Y(3, 4), Z;
+    Z = X + Y;
+    Z.show();
+    Z = X - Y;
+    Z.show();
+    Z = X * Y;
+    Z.show();
+    Z = X / Y;
+    Z.show();
+}
+
+void EX1110_2()
+{
+    Cpx X(1, 2), Y(2, 3), Z;
+    Z = X + Y;
+    Z.show();
+}
+
 int main()
 {
     // EX_1();
@@ -1147,5 +1254,7 @@ int main()
     // EX1030_4();
     // EX1030_5();
     // EX1103_1();
-    EX1103_2();
+    // EX1103_2();
+    // EX1110_1();
+    EX1110_2();
 }
