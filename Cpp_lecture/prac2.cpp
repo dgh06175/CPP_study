@@ -1039,12 +1039,12 @@ void Person::changeName(char *name)
 
 void EX1103_1()
 {
-    Person father(1, "Kitae"); // (1) father 객체 생성
-    Person daughter(father);   // (2) daughter 객체 복사 생성. 복사생성자호출
+    Person father(1, (char *)"Kitae"); // (1) father 객체 생성
+    Person daughter(father);           // (2) daughter 객체 복사 생성. 복사생성자호출
     cout << "daughter 객체 생성 직후 ----" << endl;
-    father.show();                // (3) father 객체 출력
-    daughter.show();              // (3) daughter 객체 출력
-    daughter.changeName("Grace"); // (4) daughter의 이름을 "Grace"로 변경
+    father.show();                        // (3) father 객체 출력
+    daughter.show();                      // (3) daughter 객체 출력
+    daughter.changeName((char *)"Grace"); // (4) daughter의 이름을 "Grace"로 변경
     cout << "daughter 이름을 Grace로 변경한 후 ----" << endl;
     father.show();   // (5) father 객체 출력
     daughter.show(); // (5) daughter 객체 출력
@@ -1217,6 +1217,124 @@ void EX1110_2()
     Z.show();
 }
 
+class Book_
+{
+private:
+    char *title;
+    int price;
+    int pages;
+
+public:
+    Book_()
+    {
+        title = NULL;
+        price = 0;
+        pages = 0;
+    }
+    Book_(char *title, int price, int pages)
+    {
+        int length = strlen(title);
+        this->title = new char[length + 1];
+        strcpy(this->title, title);
+        this->price = price;
+        this->pages = pages;
+    }
+    Book_(Book_ &inputObj)
+    {
+        int length = strlen(inputObj.title);
+        this->title = new char[length + 1];
+        strcpy(this->title, inputObj.title);
+        this->price = inputObj.price;
+        this->pages = inputObj.pages;
+    }
+    void show()
+    {
+        cout << "제목: " << title << "가격: " << price << "페이지: " << pages << endl;
+    }
+
+    ~Book_()
+    {
+        delete[] title;
+    }
+
+    friend bool operator==(Book_ &Book_, int price);
+    friend bool operator==(Book_ &Book_, char *title);
+    friend bool operator==(Book_ &Book_1, Book_ &Book_2);
+    friend bool operator!(Book_ &Book);
+};
+
+bool operator==(Book_ &Book_, int price)
+{
+    return Book_.price == price;
+}
+
+bool operator==(Book_ &Book_, char *title)
+{
+    return strcmp(Book_.title, title) == 0;
+}
+
+bool operator==(Book_ &Book_1, Book_ &Book_2)
+{
+    return strcmp(Book_1.title, Book_2.title) == 0 && Book_1.price == Book_2.price && Book_1.pages == Book_2.pages;
+}
+
+bool operator!(Book_ &Book)
+{
+    return Book.price == 0;
+}
+
+void EX1113_1()
+{
+    Book_ a((char *)"명품 C++", 30000, 500), b((char *)"고품 C++", 30000, 500);
+    // price 비교
+    if (a == 30000)
+        cout << "정가 30000원" << endl;
+    // 책 title 비교
+    if (a == (char *)"명품 C++")
+        cout << "명품 C++ 입니다." << endl;
+    // title, price, pages 모두 비교
+    if (a == b)
+        cout << "두 책이 같은 책입니다." << endl;
+    else
+        cout << "두 책이 다른 책입니다." << endl;
+
+    Book_ book((char *)"벼룩시장", 0, 50); // 가격은 0
+    if (!book)
+    {
+        cout << "공짜다" << endl;
+    }
+}
+
+void EX1113_2()
+{
+    int m = 2, n = 3;
+    vector<vector<int>> A(m, vector<int>(n, 1));
+    int y = 3, x = 2;
+    vector<vector<int>> B(y, vector<int>(x, 1));
+    vector<vector<int>> C(m, vector<int>(x, 1));
+
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < y; j++)
+        {
+            C[i][j] = 0;
+            for (int k = 0; k < n; k++)
+            {
+                C[i][j] += A[i][k] * B[k][j];
+            }
+        }
+    }
+
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < x; j++)
+        {
+            cout << C[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
 int main()
 {
     // EX_1();
@@ -1256,5 +1374,7 @@ int main()
     // EX1103_1();
     // EX1103_2();
     // EX1110_1();
-    EX1110_2();
+    // EX1110_2();
+    // EX1113_1();
+    EX1113_2();
 }
