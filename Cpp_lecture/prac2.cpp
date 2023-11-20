@@ -1335,6 +1335,118 @@ void EX1113_2()
     }
 }
 
+
+//void EX1117_2() {
+//	double maxArea = 0;
+//	string maxName;
+//	NamedCircle pizza[5];
+//	cout << "5개의 정수 반지름과 원의 이름을 입력하세요." << endl;
+//	for (int i = 0; i < 5; i++) {
+//		cout << i + 1 << " >> ";
+//		int radius;
+//		string name;
+//		cin >> radius >> name;
+//		pizza[i] = NamedCircle(radius, name);
+//		if (pizza[i].getArea() > maxArea) {
+//			maxArea = pizza[i].getArea();
+//			maxName = pizza[i].getName();
+//		}
+//	}
+//	cout << "가장 면적이 큰 피자는 " << maxName << "입니다." << endl;
+//}
+
+
+class A {
+	int y;
+public:
+	A() { cout << "A생성자" << endl; }
+	A(int y) { 
+		this->y = y;
+		cout << "A생성자 y 받음" << endl;
+	}
+	~A() { cout << "A소멸자" << endl; }
+};
+
+class B : public A {
+	int x;
+public:
+	B() { cout << "B생성자" << endl; }
+	B(int x) {
+		this->x = x;
+		cout << "B생성자, x 받음" << endl;
+	}
+	~B() { cout << "B소멸자" << endl; }
+};
+
+class C : public B {
+	C() { cout << "C생성자" << endl; }
+	~C() { cout << "C소멸자" << endl; }
+};
+
+void EX1117_0() {
+	B b(1);
+}
+
+class Circle {
+private:
+	int radius;
+public:
+	Circle() {
+		radius = 1; 
+	}
+	Circle(int radius) { 
+		this->radius = radius;
+	}
+
+	double getArea() { 
+		return 3.14 * radius * radius;
+	}
+	void setRadius(int radius) {
+		this->radius = radius;
+	}
+	int getRadius() {
+		return radius;
+	}
+};
+
+class NamedCircle : public Circle {
+private:
+	string name;
+public:
+	NamedCircle() {
+		name = "피자";
+	}
+	NamedCircle(int radius, string name) {
+		setRadius(radius);
+		this->name = name;
+	}
+	string getName() {
+		return name;
+	}
+	void show() {
+		cout << "반지름이 " << getRadius() << "인 " + name << endl;
+	}
+};
+
+void EX1117_1() {
+	NamedCircle waffle(3, "waffle"); // 반지름이 3이고 이름이 waffle인 원
+	waffle.show();
+}
+
+
+void main_test() {
+	int m = 2, n = 3;
+	vector<vector<int>> A;
+
+	A.resize(m);
+	for (int i = 0; i < A.size(); i++) {
+		A[i].resize(n);
+	}
+
+	A[1][2] = 100;
+}
+
+
 int main()
 {
     // EX_1();
