@@ -1335,117 +1335,227 @@ void EX1113_2()
     }
 }
 
+class A
+{
+    int y;
 
-//void EX1117_2() {
-//	double maxArea = 0;
-//	string maxName;
-//	NamedCircle pizza[5];
-//	cout << "5개의 정수 반지름과 원의 이름을 입력하세요." << endl;
-//	for (int i = 0; i < 5; i++) {
-//		cout << i + 1 << " >> ";
-//		int radius;
-//		string name;
-//		cin >> radius >> name;
-//		pizza[i] = NamedCircle(radius, name);
-//		if (pizza[i].getArea() > maxArea) {
-//			maxArea = pizza[i].getArea();
-//			maxName = pizza[i].getName();
-//		}
-//	}
-//	cout << "가장 면적이 큰 피자는 " << maxName << "입니다." << endl;
-//}
-
-
-class A {
-	int y;
 public:
-	A() { cout << "A생성자" << endl; }
-	A(int y) { 
-		this->y = y;
-		cout << "A생성자 y 받음" << endl;
-	}
-	~A() { cout << "A소멸자" << endl; }
+    A() { cout << "A생성자" << endl; }
+    A(int y)
+    {
+        this->y = y;
+        cout << "A생성자 y 받음" << endl;
+    }
+    ~A() { cout << "A소멸자" << endl; }
 };
 
-class B : public A {
-	int x;
+class B : public A
+{
+    int x;
+
 public:
-	B() { cout << "B생성자" << endl; }
-	B(int x) {
-		this->x = x;
-		cout << "B생성자, x 받음" << endl;
-	}
-	~B() { cout << "B소멸자" << endl; }
+    B() { cout << "B생성자" << endl; }
+    B(int x)
+    {
+        this->x = x;
+        cout << "B생성자, x 받음" << endl;
+    }
+    ~B() { cout << "B소멸자" << endl; }
 };
 
-class C : public B {
-	C() { cout << "C생성자" << endl; }
-	~C() { cout << "C소멸자" << endl; }
+class C : public B
+{
+    C() { cout << "C생성자" << endl; }
+    ~C() { cout << "C소멸자" << endl; }
 };
 
-void EX1117_0() {
-	B b(1);
+void EX1117_0()
+{
+    B b(1);
 }
 
-class Circle {
+class Circle_
+{
 private:
-	int radius;
-public:
-	Circle() {
-		radius = 1; 
-	}
-	Circle(int radius) { 
-		this->radius = radius;
-	}
+    int radius;
 
-	double getArea() { 
-		return 3.14 * radius * radius;
-	}
-	void setRadius(int radius) {
-		this->radius = radius;
-	}
-	int getRadius() {
-		return radius;
-	}
+public:
+    Circle_()
+    {
+        radius = 1;
+    }
+    Circle_(int radius)
+    {
+        this->radius = radius;
+    }
+
+    double getArea()
+    {
+        return 3.14 * radius * radius;
+    }
+    void setRadius(int radius)
+    {
+        this->radius = radius;
+    }
+    int getRadius()
+    {
+        return radius;
+    }
 };
 
-class NamedCircle : public Circle {
+class NamedCircle : public Circle_
+{
 private:
-	string name;
+    string name;
+
 public:
-	NamedCircle() {
-		name = "피자";
-	}
-	NamedCircle(int radius, string name) {
-		setRadius(radius);
-		this->name = name;
-	}
-	string getName() {
-		return name;
-	}
-	void show() {
-		cout << "반지름이 " << getRadius() << "인 " + name << endl;
-	}
+    NamedCircle()
+    {
+        name = "피자";
+    }
+    NamedCircle(int radius, string name)
+    {
+        setRadius(radius);
+        this->name = name;
+    }
+    string getName()
+    {
+        return name;
+    }
+    void show()
+    {
+        cout << "반지름이 " << getRadius() << "인 " + name << endl;
+    }
 };
 
-void EX1117_1() {
-	NamedCircle waffle(3, "waffle"); // 반지름이 3이고 이름이 waffle인 원
-	waffle.show();
+void EX1117_1()
+{
+    NamedCircle waffle(3, "waffle"); // 반지름이 3이고 이름이 waffle인 원
+    waffle.show();
 }
 
-
-void main_test() {
-	int m = 2, n = 3;
-	vector<vector<int>> A;
-
-	A.resize(m);
-	for (int i = 0; i < A.size(); i++) {
-		A[i].resize(n);
-	}
-
-	A[1][2] = 100;
+void EX1120_1()
+{
+    double maxArea = 0;
+    string maxName;
+    NamedCircle pizza[5];
+    cout << "5개의 정수 반지름과 원의 이름을 입력하세요." << endl;
+    for (int i = 0; i < 5; i++)
+    {
+        cout << i + 1 << " >> ";
+        int radius;
+        string name;
+        cin >> radius >> name;
+        pizza[i] = NamedCircle(radius, name);
+        if (pizza[i].getArea() > maxArea)
+        {
+            maxArea = pizza[i].getArea();
+            maxName = pizza[i].getName();
+        }
+    }
+    cout << "가장 면적이 큰 피자는 " << maxName << "입니다." << endl;
 }
 
+class BaseArray
+{
+private:
+    int capacity; // 동적 할당된 메모리 용량
+    int *mem;     // 정수 배열을 만들기 위한 메모리 포인터
+protected:
+    BaseArray(int capacity = 100)
+    {
+        this->capacity = capacity;
+        mem = new int[capacity];
+    }
+
+    ~BaseArray()
+    {
+        delete[] mem;
+    }
+
+    void put(int index, int val)
+    {
+        mem[index] = val;
+    }
+
+    int get(int index)
+    {
+        return mem[index];
+    }
+
+    int getCapacity()
+    {
+        return capacity;
+    }
+};
+
+class MyQueue : public BaseArray
+{
+    int size;
+
+public:
+    MyQueue(int cap = 100) : BaseArray(cap)
+    {
+        size = 0;
+    }
+
+    void enqueue(int n)
+    {
+        if (size >= getCapacity())
+        {
+            cout << "용량 초과" << endl;
+            return;
+        }
+        put(size, n);
+        size++;
+    }
+
+    int dequeue()
+    {
+        if (size <= 0)
+        {
+            cout << "사이즈 너무 작음" << endl;
+            return -1000000;
+        }
+        int tmp = get(0);
+        for (int i = 0; i < size - 1; i++)
+        {
+            put(i, get(i + 1));
+        }
+        size -= 1;
+        return tmp;
+    }
+
+    int capacity()
+    {
+        return getCapacity();
+    }
+
+    int length()
+    {
+        return size;
+    }
+};
+
+void EX1120_2()
+{
+    MyQueue mQ(100);
+    int n;
+    cout << "큐에 삽입할 5개의 정수를 입력하라>> ";
+    for (int i = 0; i < 5; i++)
+    {
+        cin >> n;
+        mQ.enqueue(n); // 큐에 삽입
+    }
+    cout << "큐의 용량 : " << mQ.capacity() << ", 큐의 크기 : " << mQ.length() << endl;
+    cout << "큐의 원소를 순서대로 제거하여 출력한다>> ";
+    while (mQ.length() != 0)
+    {
+        cout << mQ.dequeue() << ' '; // 큐에서 제거하여 출력
+    }
+    cout << endl
+         << "큐의 현재 크기 : " << mQ.length() << endl;
+}
 
 int main()
 {
@@ -1488,5 +1598,9 @@ int main()
     // EX1110_1();
     // EX1110_2();
     // EX1113_1();
-    EX1113_2();
+    // EX1113_2();
+    // EX1117_0();
+    // EX1117_1();
+    // EX1120_1();
+    EX1120_2();
 }
