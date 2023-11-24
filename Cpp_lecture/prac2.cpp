@@ -1522,7 +1522,7 @@ public:
         {
             put(i, get(i + 1));
         }
-        size -= 1;
+        size--;
         return tmp;
     }
 
@@ -1537,7 +1537,7 @@ public:
     }
 };
 
-void EX1120_2()
+void EX1114_1()
 {
     MyQueue mQ(100);
     int n;
@@ -1602,5 +1602,5 @@ int main()
     // EX1117_0();
     // EX1117_1();
     // EX1120_1();
-    EX1120_2();
+    EX1114_1();
 }
