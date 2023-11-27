@@ -1,4 +1,8 @@
 #include <iostream>
+#include <cstdlib>
+#include <cstring>
+#include <vector>
+
 using namespace std;
 
 void EX_1();
@@ -1557,6 +1561,164 @@ void EX1114_1()
          << "큐의 현재 크기 : " << mQ.length() << endl;
 }
 
+class Shape_1127
+{
+    string name;
+
+public:
+    virtual float getArea() = 0;
+
+    string getName()
+    {
+        return name;
+    }
+
+    void setName(string in_name)
+    {
+        this->name = in_name;
+    }
+};
+
+class Oval_1127 : public Shape_1127
+{
+    float a, b;
+
+public:
+    Oval_1127(string name, int a, int b)
+    {
+        this->a = a;
+        this->b = b;
+        setName(name);
+    }
+    virtual float getArea()
+    {
+        return a * b * 3.141592F;
+    }
+};
+
+class Rect_1127 : public Shape_1127
+{
+    float a, b;
+
+public:
+    Rect_1127(string name, int a, int b)
+    {
+        this->a = a;
+        this->b = b;
+        setName(name);
+    }
+    virtual float getArea()
+    {
+        return a * b;
+    }
+};
+
+class Triangular_1127 : public Shape_1127
+{
+    float a, b;
+
+public:
+    Triangular_1127(string name, int a, int b)
+    {
+        this->a = a;
+        this->b = b;
+        setName(name);
+    }
+    virtual float getArea()
+    {
+        return a * b * 0.5;
+    }
+};
+
+void EX1127_2()
+{
+    Shape_1127 *ptr[3];
+    ptr[0] = new Oval_1127("빈대떡", 10, 20);       // upcasting
+    ptr[1] = new Rect_1127("찰떡", 30, 40);         // upcasting
+    ptr[2] = new Triangular_1127("토스트", 30, 40); // upcasting
+
+    for (int i = 0; i < 3; i++)
+        cout << ptr[i]->getName() << " 넓이는 " << ptr[i]->getArea() << endl;
+
+    for (int i = 0; i < 3; i++)
+        delete ptr[i];
+}
+
+class Calculator
+{
+public:
+    virtual int add(int a, int b) = 0;             // 두 정수의 합 리턴
+    virtual int subtract(int a, int b) = 0;        // 두 정수의 차 리턴
+    virtual double average(int a[], int size) = 0; // 배열 a의 평균 리턴. size는 배열의 크기
+};
+
+class GoodCalc : public Calculator
+{
+public:
+    int add(int a, int b) { return a + b; }
+    int subtract(int a, int b) { return a - b; }
+    double average(int a[], int size)
+    {
+        double sum = 0;
+        for (int i = 0; i < size; i++)
+            sum += a[i];
+        return sum / size;
+    }
+};
+
+void EX1127_3()
+{
+    int a[] = {1, 2, 3, 4, 5};
+    Calculator *p = new GoodCalc();
+    cout << p->add(2, 3) << endl;
+    cout << p->subtract(2, 3) << endl;
+    cout << p->average(a, 5) << endl;
+    delete p;
+}
+
+class Calculator_1127
+{
+    void input()
+    {
+        cout << "정수 2 개를 입력하세요>> ";
+        cin >> a >> b;
+    }
+
+protected:
+    int a, b;
+    virtual int calc(int a, int b) = 0; // 두 정수의 합 리턴
+public:
+    void run()
+    {
+        input();
+        cout << "계산된 값은 " << calc(a, b) << endl;
+    }
+};
+
+class Adder_1127 : public Calculator_1127
+{
+    virtual int calc(int a, int b)
+    {
+        return a + b;
+    }
+};
+
+class Subtractor_1127 : public Calculator_1127
+{
+    virtual int calc(int a, int b)
+    {
+        return a - b;
+    }
+};
+
+void EX1127_4()
+{
+    Adder_1127 adder;
+    Subtractor_1127 subtractor;
+    adder.run();
+    subtractor.run();
+}
+
 int main()
 {
     // EX_1();
@@ -1602,5 +1764,8 @@ int main()
     // EX1117_0();
     // EX1117_1();
     // EX1120_1();
-    EX1114_1();
+    // EX1114_1();
+    // EX1127_1();
+    // EX1127_2();
+    EX1127_4();
 }
