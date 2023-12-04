@@ -1719,6 +1719,60 @@ void EX1127_4()
     subtractor.run();
 }
 
+template <class T>
+bool CheckItem(T item, T *minus, int sizeMinus)
+{
+    for (int i = 0; i < sizeMinus; i++)
+    {
+        if (minus[i] == item)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+template <class T>
+T *remove_3(T *src, int sizeSrc, T *minus, int sizeMinus, int &retSize)
+{
+    T *C = new T[sizeSrc];
+
+    int count = 0;
+    for (int k = 0; k < sizeSrc; k++)
+    {
+        if (false == CheckItem(src[k], minus, sizeMinus))
+        {
+            C[count++] = src[k];
+        }
+    }
+    retSize = count;
+    return C;
+};
+
+void EX1204_1()
+{
+    cout << "정수 배열 {1, 2, 3, 4} 에서 정수 배열 {-3, 5, 10, 1, 3}로 바꿉니다." << endl;
+    double x[] = {1, 2, 3, 4};
+    double y[] = {-3, 5, 10, 1, 3};
+    int retSize;
+
+    double *p = remove_3<double>(x, 4, y, 5, retSize);
+    if (retSize == 0)
+    {
+        cout << "모두 제거되어 리턴하는 배열이 없습니다.";
+        return;
+    }
+    else
+    {
+        for (int i = 0; i < retSize; i++)
+        {
+            cout << p[i] << " ";
+        }
+        cout << endl;
+        delete[] p;
+    }
+}
+
 int main()
 {
     // EX_1();
@@ -1767,5 +1821,6 @@ int main()
     // EX1114_1();
     // EX1127_1();
     // EX1127_2();
-    EX1127_4();
+    // EX1127_4();
+    EX1204_1();
 }
