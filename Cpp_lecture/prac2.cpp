@@ -1719,59 +1719,59 @@ using namespace std;
 //     subtractor.run();
 // }
 
-// template <class T>
-// bool CheckItem(T item, T *minus, int sizeMinus)
-// {
-//     for (int i = 0; i < sizeMinus; i++)
-//     {
-//         if (minus[i] == item)
-//         {
-//             return true;
-//         }
-//     }
-//     return false;
-// }
+template <class T>
+bool CheckItem(T item, T *minus, int sizeMinus)
+{
+    for (int i = 0; i < sizeMinus; i++)
+    {
+        if (minus[i] == item)
+        {
+            return true;
+        }
+    }
+    return false;
+}
 
-// template <class T>
-// T *remove_3(T *src, int sizeSrc, T *minus, int sizeMinus, int &retSize)
-// {
-//     T *C = new T[sizeSrc];
+template <class T>
+T *remove_3(T *src, int sizeSrc, T *minus, int sizeMinus, int &retSize)
+{
+    T *C = new T[sizeSrc];
 
-//     int count = 0;
-//     for (int k = 0; k < sizeSrc; k++)
-//     {
-//         if (false == CheckItem(src[k], minus, sizeMinus))
-//         {
-//             C[count++] = src[k];
-//         }
-//     }
-//     retSize = count;
-//     return C;
-// };
+    int count = 0;
+    for (int k = 0; k < sizeSrc; k++)
+    {
+        if (false == CheckItem(src[k], minus, sizeMinus))
+        {
+            C[count++] = src[k];
+        }
+    }
+    retSize = count;
+    return C;
+};
 
-// void EX1204_1()
-// {
-//     cout << "정수 배열 {1, 2, 3, 4} 에서 정수 배열 {-3, 5, 10, 1, 3}로 바꿉니다." << endl;
-//     double x[] = {1, 2, 3, 4};
-//     double y[] = {-3, 5, 10, 1, 3};
-//     int retSize;
+void EX1204_1()
+{
+    cout << "정수 배열 {1, 2, 3, 4} 에서 정수 배열 {-3, 5, 10, 1, 3}로 바꿉니다." << endl;
+    double x[] = {1, 2, 3, 4};
+    double y[] = {-3, 5, 10, 1, 3};
+    int retSize;
 
-//     double *p = remove_3<double>(x, 4, y, 5, retSize);
-//     if (retSize == 0)
-//     {
-//         cout << "모두 제거되어 리턴하는 배열이 없습니다.";
-//         return;
-//     }
-//     else
-//     {
-//         for (int i = 0; i < retSize; i++)
-//         {
-//             cout << p[i] << " ";
-//         }
-//         cout << endl;
-//         delete[] p;
-//     }
-// }
+    double *p = remove_3<double>(x, 4, y, 5, retSize);
+    if (retSize == 0)
+    {
+        cout << "모두 제거되어 리턴하는 배열이 없습니다.";
+        return;
+    }
+    else
+    {
+        for (int i = 0; i < retSize; i++)
+        {
+            cout << p[i] << " ";
+        }
+        cout << endl;
+        delete[] p;
+    }
+}
 
 class Circle_F
 {
@@ -2055,6 +2055,28 @@ void FINAL_5()
     cp.showColorPoint(); // 파생 클래스의 멤버 호출
 }
 
+class Base
+{
+public:
+    void f() { cout << "Base::f() called" << endl; }
+};
+class Derived : public Base
+{
+public:
+    virtual void f() { cout << "Derived::f() called" << endl; }
+};
+
+void FINAL_6()
+{
+    Derived d, *pDer;
+    pDer = &d;
+    pDer->f(); // Derived::f() 호출
+    Base *pBase;
+    // pBase->f();
+    pBase = pDer; // 업캐스팅
+    pBase->f();   // Base::f() 호출
+}
+
 int main()
 {
     // EX_1();
@@ -2109,5 +2131,6 @@ int main()
     // FINAL_2();
     // FINAL_3();
     // FINAL_4();
-    FINAL_5();
+    // FINAL_5();
+    FINAL_6();
 }
